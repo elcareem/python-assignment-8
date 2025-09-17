@@ -13,3 +13,31 @@ Example Usage:
     acc.withdraw(200)
     print(acc.get_balance())  # 1300
 """
+
+class BankAccount:
+    def __init__(self, name, balance):
+        self.name = name
+        self.balance = balance
+        self.transactions = []
+
+    def deposit(self, amount):
+        self.balance = self.balance + amount
+        self.transactions.append({"deposit": amount})
+        
+    def withdraw(self, amount):
+        if self.balance >= amount:
+            self.balance = self.balance - amount
+            self.transactions.append({"withdrawal": amount})
+        else:
+            "Insufficient Balance"
+    
+    def get_balance(self):
+        return self.balance
+
+account_1 = BankAccount("Alice", 1000)
+
+account_1.deposit(500)
+account_1.withdraw(200)
+print(account_1.get_balance())
+
+
