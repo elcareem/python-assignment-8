@@ -14,3 +14,39 @@ Example Usage:
     print(register.get_status("John"))   # "Present"
     print(register.show_register())      # {"John": "Present", "Mary": "Absent"}
 """
+class AttendanceRegister:
+    def __init__(self):
+        self.records = {}
+
+    def mark_present(self, student):
+        if student not in self.records:
+            self.records.update({student: "Present"})
+        else:
+            print(f"Student {student} has already marked attendance")
+
+
+    def mark_absent(self, student):
+        if student not in self.records:
+            self.records.update({student: "Absent"})
+        else:
+            print(f"Student {student} has already marked attendance")
+
+
+    def get_status(self, student):
+        if student in self.records:
+            return self.records[student]
+        else:
+            return f"Student {student} is not on the attendance register"
+
+
+    def show_register(self):
+        return self.records
+
+register = AttendanceRegister()
+register.mark_present("John")
+register.mark_absent("Mary")
+print(register.get_status("John"))   
+print(register.show_register())     
+register.mark_present("John")
+register.mark_absent("Mary")
+
