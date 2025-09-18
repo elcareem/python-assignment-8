@@ -21,7 +21,8 @@ class ContactBook:
     def add_contact(self, name, phone_no):
         if name in self.contacts:
             if phone_no not in self.contacts.values():
-                self.contacts[name] = [self.contacts[name]]
+                if not isinstance(self.contacts[name], list):
+                    self.contacts[name] = [self.contacts[name]]
                 self.contacts[name].append(phone_no)
             return "Contact already exist"        
         for contact_name, contact_no in self.contacts.items():
@@ -45,10 +46,9 @@ class ContactBook:
 
 book = ContactBook()
 book.add_contact("Alice", "08012345678")
-print(book.add_contact("Alice", "08012345678"))
+print(book.add_contact("Alice", "08012345679"))
 print(book.add_contact("Jane", "08012345648"))
 print(book.add_contact("Alice", "08012345674"))
-print(book.delete_contact("Alice"))
 print(book.search_contact("Alice"))
 
 print(book.show_contacts())
